@@ -1,0 +1,81 @@
+.management-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.management-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #003566;
+}
+
+.management-list {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.management-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.management-item span {
+  font-size: 1rem;
+  color: #212529;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.update-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.add-management {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-management input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.add-btn {
+  background-color: #198754;
+  color: white;
+}
