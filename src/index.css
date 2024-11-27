@@ -1,47 +1,54 @@
+/* Genel body ayarları */
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #F1F5F9;
-  min-width: 1200px;
+  margin: 0; /* Varsayılan kenar boşluklarını kaldırır */
+  font-family: 'Arial', sans-serif; /* Arial yazı tipini ve alternatif olarak sans-serif kullanır */
+  background-color: #F1F5F9; /* Açık gri arka plan rengi */
+  min-width: 1200px; /* Ekranın minimum genişliğini 1200px olarak ayarlar */
 }
 
-
+/* Tüm butonlar için ortak stiller */
 button {
-  background-color: #3B82F6;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  background-color: #3B82F6; /* Buton arka plan rengini mavi yapar */
+  color: white; /* Buton metin rengini beyaz yapar */
+  border: none; /* Buton kenarlıklarını kaldırır */
+  border-radius: 5px; /* Buton köşelerini yuvarlar */
+  padding: 10px 15px; /* Buton iç boşluklarını ayarlar */
+  cursor: pointer; /* Fare imlecini işaretçiye dönüştürür */
+  transition: background-color 0.3s; /* Arka plan renginde geçiş animasyonu ekler */
 }
 
+/* Buton üzerine gelindiğinde uygulanacak stiller */
 button:hover {
-  background-color: #2563EB;
+  background-color: #2563EB; /* Daha koyu bir mavi arka plan rengi */
 }
 
+/* Tüm giriş kutuları için ortak stiller */
 input {
-  padding: 10px;
-  border: 1px solid #CBD5E1;
-  border-radius: 5px;
-  margin-right: 10px;
+  padding: 10px; /* İç boşluk ekler */
+  border: 1px solid #CBD5E1; /* Açık gri kenarlık */
+  border-radius: 5px; /* Köşeleri yuvarlar */
+  margin-right: 10px; /* Sağ tarafına boşluk ekler */
 }
 
+/* Giriş kutusuna odaklanıldığında uygulanacak stiller */
 input:focus {
-  outline: none;
-  border-color: #3B82F6;
-  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  outline: none; /* Varsayılan dış hatları kaldırır */
+  border-color: #3B82F6; /* Kenarlık rengini mavi yapar */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Hafif mavi bir gölge efekti ekler */
 }
 
+/* Tüm başlıklar için ortak stiller */
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  margin: 0; /* Başlıklar arasındaki varsayılan kenar boşluklarını kaldırır */
 }
 
+/* Tüm liste stilleri için genel ayarlar */
 ul {
-  padding: 0;
-  margin: 0;
+  padding: 0; /* Varsayılan dolgu boşluklarını kaldırır */
+  margin: 0; /* Varsayılan kenar boşluklarını kaldırır */
 }
 
+/* Liste elemanları için ayarlar */
 li {
-  list-style: none;
+  list-style: none; /* Varsayılan madde işaretlerini kaldırır */
 }

@@ -1,38 +1,44 @@
+/* Ana uygulama kapsayıcısı için stiller */
 .App {
-  text-align: center;
+  text-align: center; /* Tüm içeriği ortalar */
 }
 
+/* Uygulama logosu için stiller */
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 40vmin; /* Logo yüksekliğini ekranın dikey boyutuna göre ayarlar */
+  pointer-events: none; /* Kullanıcının logo üzerinde etkileşim kurmasını engeller */
 }
 
+/* Hareket tercihi belirtilmemişse animasyon uygula */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 20s linear; /* Logoya sürekli dönme animasyonu uygular */
   }
 }
 
+/* Uygulama başlığı için stiller */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #282c34; /* Başlığın arka plan rengini koyu gri yapar */
+  min-height: 100vh; /* Ekranın tamamını kapsayacak kadar yükseklik ayarlar */
+  display: flex; /* İçeriği düzenlemek için flexbox kullanır */
+  flex-direction: column; /* Elemanları dikey olarak sıralar */
+  align-items: center; /* Elemanları yatay eksende ortalar */
+  justify-content: center; /* Elemanları dikey eksende ortalar */
+  font-size: calc(10px + 2vmin); /* Yazı boyutunu cihaz boyutuna göre ayarlar */
+  color: white; /* Yazı rengini beyaz yapar */
 }
 
+/* Uygulama bağlantıları için stiller */
 .App-link {
-  color: #61dafb;
+  color: #61dafb; /* Açık mavi renk */
 }
 
+/* Logo dönme animasyonu için keyframes */
 @keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg); /* Başlangıç pozisyonunda döndürme yok */
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* 360 derece döndürme */
   }
 }

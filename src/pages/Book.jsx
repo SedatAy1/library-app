@@ -1,59 +1,123 @@
 import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2"; // SweetAlert2 kütüphanesini import ediyoruz
 
 const Book = () => {
+  // Kitap listesi ve yeni kitap bilgisi için state tanımlamaları
   const [books, setBooks] = useState([
     { id: 1, title: "1984", author: "George Orwell" },
     { id: 2, title: "Savaş ve Barış", author: "Lev Tolstoy" },
     { id: 3, title: "Suç ve Ceza", author: "Fyodor Dostoyevski" },
     { id: 4, title: "Körlük", author: "Jose Saramago" },
+    { id: 5, title: "Hayvan Çiftliği", author: "George Orwell" },
   ]);
 
-  const [newBook, setNewBook] = useState({ title: "", author: "" });
+  const [newBook, setNewBook] = useState({ title: "", author: "" }); // Yeni kitap bilgilerini tutmak için
 
+  // Kitap ekleme işlemi
   const addBook = () => {
+    // Kitap adı veya yazar adı boşsa uyarı gösterir
     if (newBook.title.trim() === "" || newBook.author.trim() === "") {
-      toast.error("Kitap ve yazar adı boş olamaz!");
+      Swal.fire({
+        icon: "error",
+        title: "Hata!",
+        text: "Kitap ve yazar adı boş olamaz!",
+      });
       return;
     }
+
+    // Yeni kitap için ID belirleme
     const newId = books.length ? books[books.length - 1].id + 1 : 1;
+
+    // Kitap listesine yeni kitap ekleme
     setBooks([...books, { id: newId, ...newBook }]);
+
+    // Giriş alanlarını temizleme
     setNewBook({ title: "", author: "" });
-    toast.success("Kitap başarıyla eklendi!");
+
+    // Başarı mesajı gösterme
+    Swal.fire({
+      icon: "success",
+      title: "Başarılı!",
+      text: "Kitap başarıyla eklendi!",
+    });
   };
 
+  // Kitap silme işlemi
   const deleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
-    toast.info("Kitap başarıyla silindi!");
+    // Kullanıcıdan silme işlemi için onay alır
+    Swal.fire({
+      title: "Emin misiniz?",
+      text: "Bu işlem geri alınamaz!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Evet, sil!",
+      cancelButtonText: "Hayır, iptal!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Kitabı siler
+        setBooks(books.filter((book) => book.id !== id));
+        Swal.fire("Silindi!", "Kitap başarıyla silindi.", "success");
+      }
+    });
   };
 
+  // Kitap güncelleme işlemi
   const updateBook = (id) => {
-    const updatedTitle = prompt("Yeni Kitap Adını Girin:");
-    const updatedAuthor = prompt("Yeni Yazar Adını Girin:");
-    if (updatedTitle && updatedAuthor) {
-      setBooks(
-        books.map((book) =>
-          book.id === id ? { ...book, title: updatedTitle, author: updatedAuthor } : book
-        )
-      );
-      toast.success("Kitap başarıyla güncellendi!");
-    }
+    // Yeni kitap adı almak için bir giriş penceresi açar
+    Swal.fire({
+      title: "Yeni Kitap Adını Girin",
+      input: "text",
+      inputPlaceholder: "Yeni Kitap Adı",
+      showCancelButton: true,
+      confirmButtonText: "Kaydet",
+      cancelButtonText: "İptal",
+    }).then((resultTitle) => {
+      if (resultTitle.isConfirmed && resultTitle.value.trim() !== "") {
+        // Yeni yazar adı almak için başka bir giriş penceresi açar
+        Swal.fire({
+          title: "Yeni Yazar Adını Girin",
+          input: "text",
+          inputPlaceholder: "Yeni Yazar Adı",
+          showCancelButton: true,
+          confirmButtonText: "Kaydet",
+          cancelButtonText: "İptal",
+        }).then((resultAuthor) => {
+          if (resultAuthor.isConfirmed && resultAuthor.value.trim() !== "") {
+            // Kitap bilgilerini günceller
+            setBooks(
+              books.map((book) =>
+                book.id === id
+                  ? { ...book, title: resultTitle.value, author: resultAuthor.value }
+                  : book
+              )
+            );
+            Swal.fire("Başarılı!", "Kitap başarıyla güncellendi.", "success");
+          }
+        });
+      }
+    });
   };
 
   return (
     <div style={styles.container}>
+      {/* Başlık */}
       <h1 style={styles.title}>Kitap Yönetimi</h1>
-      <ToastContainer />
 
+      {/* Kitap listesi */}
       <div style={styles.listContainer}>
         {books.map((book) => (
           <div key={book.id} style={styles.listItem}>
-            <span>{book.title} - {book.author}</span>
+            <span>
+              {book.title} - {book.author} {/* Kitap adı ve yazar adı */}
+            </span>
             <div style={styles.buttonGroup}>
+              {/* Güncelleme butonu */}
               <button style={styles.button} onClick={() => updateBook(book.id)}>
                 Güncelle
               </button>
+              {/* Silme butonu */}
               <button style={styles.deleteButton} onClick={() => deleteBook(book.id)}>
                 Sil
               </button>
@@ -62,21 +126,23 @@ const Book = () => {
         ))}
       </div>
 
+      {/* Yeni kitap ekleme formu */}
       <div style={styles.formContainer}>
         <input
           type="text"
-          value={newBook.title}
+          value={newBook.title} // Kitap adı state
           placeholder="Kitap Adı"
           onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
           style={styles.input}
         />
         <input
           type="text"
-          value={newBook.author}
+          value={newBook.author} // Yazar adı state
           placeholder="Yazar Adı"
           onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
           style={styles.input}
         />
+        {/* Ekleme butonu */}
         <button style={styles.addButton} onClick={addBook}>
           Ekle
         </button>
@@ -85,6 +151,7 @@ const Book = () => {
   );
 };
 
+// CSS stilleri
 const styles = {
   container: {
     maxWidth: "800px",
@@ -134,9 +201,6 @@ const styles = {
     fontSize: "14px",
     transition: "background-color 0.3s",
   },
-  buttonHover: {
-    backgroundColor: "#2563EB",
-  },
   formContainer: {
     display: "flex",
     justifyContent: "center",
@@ -163,4 +227,4 @@ const styles = {
   },
 };
 
-export default Book;
+export default Book; // Book bileşenini dışa aktarır
