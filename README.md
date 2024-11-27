@@ -1,7 +1,7 @@
 Kütüphane Uygulaması (Library Application)
 
 
-Proje Canlı Linki  -->  https://singular-druid-829d13.netlify.app
+Proje Canlı Linki  -->  https://incomparable-beignet-7f7c12.netlify.app/
 
 
 
